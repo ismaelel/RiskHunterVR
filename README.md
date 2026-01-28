@@ -1,87 +1,86 @@
-# 🛡️ RiskHunter VR - Formation Sécurité Incendie & Tri
+# 🛡️ RiskHunter VR - Formation Sécurité & Tri
 
-**RiskHunter VR** est une simulation en Réalité Virtuelle (VR) destinée à former les agents de sécurité et les employés d'usine. Le but est d'identifier des risques environnementaux et d'effectuer un tri sélectif de déchets dangereux sous la pression du temps.
-
----
-
-## 🎮 Fonctionnalités Principales
-
-### 1. Gameplay Immersif
-* **Tri Sélectif Physique :** Manipulation d'objets (Cartons, Bidons) avec physique réaliste.
-* **Gestion de la Fragilité :** Système de détection de chocs. Si un objet "Fragile" est secoué trop fort ou tombe de haut, il casse (Feedback sonore + Pénalité de score).
-* **Chasse aux Risques :** Identification visuelle de dangers dans l'environnement (Flaques, Câbles dénudés, etc.).
-
-### 2. Système de Score Avancé
-Le score n'est pas linéaire, il récompense l'efficacité et la prudence :
-* **Points de base :** +100 pts par objet trié, +50 pts par risque détecté.
-* **Bonus de Temps :** Le temps restant au chrono est converti en points bonus à la fin.
-* **Pénalités (Malus) :** Des points sont retirés si le joueur casse du matériel.
-* **Formule :** `(Tri + Risques + Bonus Temps) - Pénalités = Score Final`.
-
-### 3. Persistance des Données (SQL)
-Le jeu intègre une base de données locale complète (**SQLite**) :
-* **Sauvegarde automatique :** Les scores sont enregistrés localement.
-* **Classement (Leaderboard) :** Affichage du TOP 3 des meilleurs agents sur l'écran de fin.
-* **Progression Visuelle :** Dans le menu, chaque porte de niveau affiche dynamiquement le **Meilleur Score Personnel** du joueur grâce à des requêtes SQL personnalisées.
-
-### 4. Interface Utilisateur (UI) Technique
-* **Shader "Always Visible" :** Développement d'un shader personnalisé (`ZTest Always`) pour que les interfaces critiques (Chargement, Alertes) soient visibles à travers les murs et les objets 3D.
-* **Feedback Visuel :** Textes flottants et indicateurs de couleur (Rouge = Pénalité/Urgence, Jaune = Or, Vert = Validation).
+**RiskHunter VR** est une simulation immersive en Réalité Virtuelle destinée à former les agents de sécurité et le personnel industriel. Le projet met l'accent sur la gestion du stress, le tri des déchets dangereux et l'identification des risques environnementaux.
 
 ---
 
-## 🛠️ Stack Technique
+## 🎮 Fonctionnalités de Gameplay
 
-* **Moteur :** Unity 2022 (LTS)
+### 1. Tri Sélectif & Physique Réaliste
+Le joueur doit trier des déchets (Cartons, Produits chimiques) dans les bennes appropriées.
+* **Mécanique de Fragilité (Physics-Based) :** Les objets possèdent un script `ObjetFragile` qui surveille leur vélocité (`Rigidbody.linearVelocity`) et la force des impacts (`Collision.relativeVelocity`).
+* **Pénalités :** Si un objet fragile est secoué violemment ou tombe de haut, il se brise. Cela déclenche un feedback sonore et une **pénalité immédiate de points** (Score négatif possible).
+
+### 2. Système de Score Dynamique
+Le score n'est pas une simple addition, c'est un calcul d'efficacité :
+> **Formule :** `(Objets Triés + Risques Identifiés + Bonus Temps) - Pénalités de Casse = SCORE FINAL`
+* **Chronometre :** Le temps défile. À la fin du niveau, chaque seconde restante est convertie en points bonus pour récompenser la rapidité.
+* **Feedback UI :** Le score s'affiche en temps réel. Il passe en **Rouge** si le joueur est en négatif (malus trop importants) et en **Blanc/Jaune** sinon.
+
+### 3. Progression & Sauvegarde
+* **Affichage dans le Menu :** Grâce à un système de requêtes SQL au chargement (`Awake`), chaque porte de niveau affiche dynamiquement le **Meilleur Score Personnel** du joueur connecté sur un panneau 3D.
+* **Classement :** Un Leaderboard (Top 3) est généré à la fin de chaque session.
+
+---
+
+## 🛠️ Architecture Technique
+
+### Stack Technologique
+* **Moteur :** Unity 2022 LTS
 * **Langage :** C#
 * **VR Framework :** XR Interaction Toolkit
-* **Base de Données :** SQLite (`Mono.Data.Sqlite` & `System.Data`)
-* **UI :** TextMeshPro (TMP)
+* **Données :** SQLite (`Mono.Data.Sqlite`)
+* **UI :** TextMeshPro
+
+### Choix d'Architecture : Pourquoi SQLite et pas de Web Service ?
+
+Pour la gestion des données, nous avons opté pour une architecture **locale (Standalone)** utilisant SQLite, plutôt que de développer une API REST (Web Service) connectée à un serveur distant.
+
+
+
+**Justification de ce choix technique :**
+
+1.  **Philosophie "Offline-First" :** Le dispositif est conçu pour être utilisé dans des zones industrielles, des sous-sols ou des salles de formation où la connexion Wi-Fi est instable ou inexistante. SQLite garantit un fonctionnement 100% autonome.
+2.  **Performance & Latence :** En VR, l'immersion est critique. L'accès direct au fichier `.db` local élimine la latence réseau (Ping) qu'imposerait un appel HTTP vers une API externe. L'affichage des scores sur les portes est instantané.
+3.  **Simplicité de déploiement :** Pas de maintenance serveur. La base de données est un fichier unique stocké dans le `Application.persistentDataPath` du casque.
+
+### Solutions Techniques Spécifiques
+
+* **UI "Always On Top" (Shader Overlay) :** Problème rencontré : Les interfaces de chargement ou de score passaient parfois à travers les murs ou étaient cachées par la géométrie 3D.  
+    Solution : Création d'un **Shader personnalisé** utilisant la propriété `ZTest Always`. Cela force le rendu de l'interface par-dessus tous les autres objets de la scène, simulant un affichage HUD (Head-Up Display).
 
 ---
 
-## 📂 Architecture du Code
+## 📂 Structure du Code (Scripts Clés)
 
-Voici les scripts clés qui pilotent la simulation :
-
-* **`ManagerNiveauTri.cs` :** Le "Cerveau" du niveau.
-    * Gère la boucle de jeu (Start -> Play -> End).
-    * Calcule le score en temps réel (incluant les malus et le timer).
-    * Communique avec la BDD pour sauvegarder le résultat.
-* **`DatabaseManager.cs` :** Gestionnaire SQL.
-    * Connexion à la BDD `RiskhunterSave.db`.
-    * Exécution des requêtes (INSERT, SELECT, UPDATE).
-    * Gestion des profils joueurs.
-* **`ObjetFragile.cs` :** Script de physique.
-    * Surveille la vélocité (`Rigidbody.velocity`) et les collisions.
-    * Déclenche les pénalités si les seuils de tolérance sont dépassés.
-* **`ScorePorte.cs` :**
-    * Script UI placé dans le Menu Principal.
-    * Récupère le record du joueur connecté dès le chargement (`Awake`) pour l'afficher sur la porte.
+* **`ManagerNiveauTri.cs` :** Orchestre la boucle de jeu. Il gère le timer, réceptionne les événements de casse (Pénalités), calcule le score final et déclenche la sauvegarde.
+* **`DatabaseManager.cs` :** Couche d'abstraction SQL. Gère la connexion, la création des tables (`IF NOT EXISTS`) et les méthodes CRUD (Create, Read, Update, Delete) pour les joueurs et les scores.
+* **`ObjetFragile.cs` :** Script attaché aux prefabs interactifs. Il calcule la magnitude des vecteurs de force pour déterminer si l'objet doit casser.
+* **`ScorePorte.cs` :** Script UI autonome qui interroge la BDD pour mettre à jour l'environnement du menu principal selon la progression du joueur.
 
 ---
 
-## 🚀 Installation & Lancement
+## 🚀 Installation
 
-1.  Cloner ce dépôt :
+1.  Cloner le dépôt :
     ```bash
     git clone [https://github.com/VOTRE_NOM/RiskHunterVR.git](https://github.com/VOTRE_NOM/RiskHunterVR.git)
     ```
-2.  Ouvrir le projet avec **Unity Hub** (Version recommandée : 2022.x).
-3.  Ouvrir la scène de démarrage : `Assets/Scenes/MenuPrincipal.unity`.
-4.  Lancer le mode **Play** (avec un casque VR connecté ou en mode simulation).
+2.  Ouvrir le projet avec **Unity Hub**.
+3.  Lancer la scène `MenuPrincipal` situé dans `Assets/Scenes`.
+4.  *Note : La base de données se créera automatiquement au premier lancement.*
 
 ---
 
-## 🕹️ Contrôles VR
+## 🕹️ Contrôles
 
-* **Grip (Gâchette latérale) :** Attraper / Relâcher les objets.
-* **Trigger (Gâchette index) :** Valider les menus / Interagir.
-* **Thumbstick (Joystick) :** Se déplacer (Téléportation ou Continu).
+* **Déplacement :** Joystick Gauche (Teleportation).
+* **Interaction :** Gâchette Latérale (Grip) pour attraper.
+* **UI :** Index (Trigger) pour valider.
 
 ---
 
 ## 👨‍💻 Auteur
 
-**[TON NOM / PRÉNOM]**
-*Projet de fin de formation / module Unity.*
+**[EL KASBAOUI ISMAËL]**
+Projet Étudiant / Formation VR

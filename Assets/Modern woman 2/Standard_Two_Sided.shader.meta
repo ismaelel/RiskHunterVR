@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5a8b88d12db7cd843abe8dd99156b1c7
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191264
+  packageName: Modern woman 2
+  packageVersion: 1.0
+  assetPath: Assets/Modern woman 2/Standard_Two_Sided.shader
+  uploadId: 422441

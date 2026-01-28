@@ -4,10 +4,29 @@
 
 ---
 
+## 🚀 Installation
+
+1.  Cloner le dépôt :
+    ```bash
+    git clone [https://github.com/ismaelel/RiskHunterVR.git](https://github.com/ismaelel/RiskHunterVR.git)
+    ```
+2.  Ouvrir le projet avec **Unity Hub**.
+3.  Lancer la scène `MenuPrincipal` situé dans `Assets/Scenes`.
+4.  *Note : La base de données se créera automatiquement au premier lancement.*
+
+---
+
+## 🕹️ Contrôles
+
+* **Déplacement :** Joystick Gauche (Teleportation).
+* **Interaction :** Gâchette Latérale (Grip) pour attraper.
+* **UI :** Index (Trigger) pour valider.
+
+---
 ## 🎮 Fonctionnalités de Gameplay
 
 ### 1. Tri Sélectif & Physique Réaliste
-Le joueur doit trier des déchets (Cartons, Produits chimiques) dans les bennes appropriées.
+Le joueur doit trier des déchets (Cartons, Produits inflammables) dans les bennes appropriées.
 * **Mécanique de Fragilité (Physics-Based) :** Les objets possèdent un script `ObjetFragile` qui surveille leur vélocité (`Rigidbody.linearVelocity`) et la force des impacts (`Collision.relativeVelocity`).
 * **Pénalités :** Si un objet fragile est secoué violemment ou tombe de haut, il se brise. Cela déclenche un feedback sonore et une **pénalité immédiate de points** (Score négatif possible).
 
@@ -58,27 +77,7 @@ Pour la gestion des données, nous avons opté pour une architecture **locale (S
 * **`ObjetFragile.cs` :** Script attaché aux prefabs interactifs. Il calcule la magnitude des vecteurs de force pour déterminer si l'objet doit casser.
 * **`ScorePorte.cs` :** Script UI autonome qui interroge la BDD pour mettre à jour l'environnement du menu principal selon la progression du joueur.
 
----
 
-## 🚀 Installation
-
-1.  Cloner le dépôt :
-    ```bash
-    git clone [https://github.com/VOTRE_NOM/RiskHunterVR.git](https://github.com/VOTRE_NOM/RiskHunterVR.git)
-    ```
-2.  Ouvrir le projet avec **Unity Hub**.
-3.  Lancer la scène `MenuPrincipal` situé dans `Assets/Scenes`.
-4.  *Note : La base de données se créera automatiquement au premier lancement.*
-
----
-
-## 🕹️ Contrôles
-
-* **Déplacement :** Joystick Gauche (Teleportation).
-* **Interaction :** Gâchette Latérale (Grip) pour attraper.
-* **UI :** Index (Trigger) pour valider.
-
----
 
 ## 👨‍💻 Auteur
 

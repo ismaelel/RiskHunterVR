@@ -6,14 +6,19 @@
 
 ## 🚀 Installation
 
+### Par le dépôt
+
 1.  Cloner le dépôt :
     ```bash
     git clone [https://github.com/ismaelel/RiskHunterVR.git](https://github.com/ismaelel/RiskHunterVR.git)
     ```
 2.  Ouvrir le projet avec **Unity Hub**.
-3.  Lancer la scène `MenuPrincipal` situé dans `Assets/Scenes`.
-4.  *Note : La base de données se créera automatiquement au premier lancement.*
+3.  Lancer la scène `MainMenu` situé dans `Assets/Scenes`.
+4.  *Note : La base de données se créera automatiquement au premier lancement. Un fichier sql est présent pour voir les tables dans le dossier SQL*
 
+### Par le build
+
+Vous pouvez aussi lancer le .exe du dossier Build.
 ---
 
 ## 🕹️ Contrôles
@@ -67,15 +72,6 @@ Pour la gestion des données, nous avons opté pour une architecture **locale (S
 
 * **UI "Always On Top" (Shader Overlay) :** Problème rencontré : Les interfaces de chargement ou de score passaient parfois à travers les murs ou étaient cachées par la géométrie 3D.  
     Solution : Création d'un **Shader personnalisé** utilisant la propriété `ZTest Always`. Cela force le rendu de l'interface par-dessus tous les autres objets de la scène, simulant un affichage HUD (Head-Up Display).
-
----
-
-## 📂 Structure du Code (Scripts Clés)
-
-* **`ManagerNiveauTri.cs` :** Orchestre la boucle de jeu. Il gère le timer, réceptionne les événements de casse (Pénalités), calcule le score final et déclenche la sauvegarde.
-* **`DatabaseManager.cs` :** Couche d'abstraction SQL. Gère la connexion, la création des tables (`IF NOT EXISTS`) et les méthodes CRUD (Create, Read, Update, Delete) pour les joueurs et les scores.
-* **`ObjetFragile.cs` :** Script attaché aux prefabs interactifs. Il calcule la magnitude des vecteurs de force pour déterminer si l'objet doit casser.
-* **`ScorePorte.cs` :** Script UI autonome qui interroge la BDD pour mettre à jour l'environnement du menu principal selon la progression du joueur.
 
 
 

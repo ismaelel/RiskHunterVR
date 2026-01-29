@@ -7,9 +7,9 @@ public class GestionEPI : MonoBehaviour
     private static bool estPremierLancement = true;
 
     [Header("--- AUDIO ---")]
-    public AudioSource sourceAudio; // <--- Glisse ton AudioSource ici
-    public AudioClip sonPorteOuverture; // <--- Glisse le son "Porte qui s'ouvre" ou "Succès"
-    public AudioClip sonAccesRefuse;    // <--- Glisse le son "Erreur" ou "Bip rouge"
+    public AudioSource sourceAudio;
+    public AudioClip sonPorteOuverture; 
+    public AudioClip sonAccesRefuse;   
 
     [Header("--- Les Objets EPI ---")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable objetCasque;
@@ -48,7 +48,6 @@ public class GestionEPI : MonoBehaviour
 
         if (estSecurise)
         {
-            // ✅ C'est tout bon : On lance la transition douce
             Debug.Log("Accès autorisé vers " + nomDeLaScene);
             
             // --- JOUER SON OUVERTURE ---

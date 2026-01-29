@@ -4,7 +4,7 @@ using TMPro; // Indispensable pour modifier le texte du bouton
 public class ToggleMur : MonoBehaviour
 {
     [Header("Ce qu'on veut cacher/montrer")]
-    public GameObject zoneDeTexte; // L'objet qui contient tes paragraphes
+    public GameObject zoneDeTexte; 
 
     [Header("Le bouton lui-même")]
     public TextMeshProUGUI texteDuBouton; // Pour changer "Masquer" en "Voir"

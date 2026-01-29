@@ -8,7 +8,7 @@ public class ZoneDeTri : MonoBehaviour
     public string tagAttendu; 
     
     [Header("Audio")]
-    public AudioSource sourceAudio; // <--- AJOUT ICI : Glisse ton AudioSource ici
+    public AudioSource sourceAudio;
     
     [Header("Précision")]
     [Tooltip("Marge d'erreur en mètres (0.01 = 1cm). Si un coin dépasse de plus que ça, c'est refusé.")]
@@ -23,7 +23,7 @@ public class ZoneDeTri : MonoBehaviour
         zoneCollider = GetComponent<BoxCollider>();
 
         if (zoneCollider == null)
-            Debug.LogError("⚠️ ERREUR : L'objet '" + gameObject.name + "' doit avoir un Box Collider !");
+            Debug.LogError("ERREUR : L'objet '" + gameObject.name + "' doit avoir un Box Collider !");
     }
 
     void OnTriggerStay(Collider other)
@@ -83,7 +83,7 @@ public class ZoneDeTri : MonoBehaviour
 
     void ValiderCarton(XRGrabInteractable interactable)
     {
-        Debug.Log("✅ Carton parfaitement rangé !");
+        Debug.Log("Carton parfaitement rangé !");
         
         // --- SON DE VALIDATION ---
         if (sourceAudio != null) 
@@ -94,7 +94,7 @@ public class ZoneDeTri : MonoBehaviour
         interactable.enabled = false; 
         if(manager != null) manager.AjouterCarton();
         if (FeedbackManager.Instance != null) 
-            FeedbackManager.Instance.Afficher("Stockage Parfait !", Color.green);
+            FeedbackManager.Instance.Afficher("Stockage effectué !", Color.green);
     }
     
     void OnDrawGizmos()

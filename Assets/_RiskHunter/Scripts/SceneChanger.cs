@@ -1,5 +1,5 @@
 using UnityEngine;
-// On n'a même plus besoin de SceneManager ici car le Chargeur s'en occupe !
+
 
 public class SceneChanger : MonoBehaviour
 {
@@ -21,8 +21,7 @@ public class SceneChanger : MonoBehaviour
             }
             else
             {
-                // Sécurité : Si tu as oublié de mettre le Canvas Chargement dans la scène
-                Debug.LogWarning("⚠️ Pas de ChargeurScene trouvé ! Chargement brutal.");
+                Debug.LogWarning("Pas de ChargeurScene trouvé ! Chargement brutal.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene(nomSceneMenu);
             }
         }

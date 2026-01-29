@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Data;
 using Mono.Data.SqliteClient;
 using System.IO;
-// On a enlevé "using TMPro" car le comptable ne touche pas à l'écran !
+
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -11,10 +11,7 @@ public class DatabaseManager : MonoBehaviour
     public int userIdConnecte = 0; 
     public int levelIdActuel = 1;  
 
-    // ON A SUPPRIMÉ "labelScoreJeu" ICI. 
-    // C'est le ManagerNiveauTri qui gère l'affichage.
-
-    // REMPLACE ton "void Awake()" et ton "void Start()" actuels par CE BLOC :
+    /
 
     void Awake()
     {
@@ -34,7 +31,7 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    // SUPPRIME la fonction "void Start()" en dessous, car on a tout mis dans Awake.
+ 
 
    
 

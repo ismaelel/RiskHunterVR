@@ -40,7 +40,7 @@ public class ManagerNiveauDanger : MonoBehaviour
         if(panneauFinNiveau) 
             panneauFinNiveau.SetActive(false);
 
-        // 3. Calcul Automatique (On cherche tes scripts de danger !)
+        // 3. Calcul Automatique
         if (compterAutomatiquement)
         {
             // On compte les zones à protéger (Huile, Câble, Ventilo)
@@ -58,10 +58,9 @@ public class ManagerNiveauDanger : MonoBehaviour
     }
 
     // ---------------------------------------------------------
-    // --- ACTION DU JEU (Appelée par tes scripts Hazard) ---
+    // --- ACTION DU JEU  ---
     // ---------------------------------------------------------
 
-    // Cette fonction est appelée quand tu sécurises une zone
     public void ValiderUnDanger()
     {
         dangersResolus++;

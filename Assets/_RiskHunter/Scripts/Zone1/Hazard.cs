@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Hazard : MonoBehaviour
 {
     [Header("Audio")]
-    public AudioSource sourceAudio; // <--- AJOUT : Glisse l'AudioSource ici
+    public AudioSource sourceAudio; 
 
     private bool dejaTrouve = false;
     private ManagerNiveauTri manager;

@@ -4,7 +4,7 @@ using System.Collections; // Nécessaire pour le délai
 public class MenuFaceCamera : MonoBehaviour
 {
     [Header("Référence Obligatoire")]
-    public Transform cameraTete; // Glisse ta 'Main Camera' ici !
+    public Transform cameraTete; 
 
     [Header("Réglages")]
     public float distance = 1.0f; // 1 mètre devant

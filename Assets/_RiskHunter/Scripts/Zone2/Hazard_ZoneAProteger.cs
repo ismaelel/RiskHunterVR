@@ -19,7 +19,6 @@ public class Hazard_ZoneAProteger : MonoBehaviour
     public bool blesserSiOnMarcheDedans = true; 
 
     [Header("--- AMBIANCE (Bruit de fond) ---")]
-    // C'est ici que tu mettras ton bruit de gouttes !
     public AudioSource sonAmbianceLoop; 
 
     [Header("--- Feedback Visuel (Flash) ---")]
@@ -69,7 +68,7 @@ public class Hazard_ZoneAProteger : MonoBehaviour
         {
             estSecurise = true;
             
-            // --- NOUVEAU : ON COUPE LE SON D'AMBIANCE ---
+         
             if (sonAmbianceLoop != null)
             {
                 sonAmbianceLoop.Stop(); // Silence !

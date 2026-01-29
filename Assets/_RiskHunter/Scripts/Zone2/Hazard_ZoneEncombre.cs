@@ -45,7 +45,7 @@ public class Hazard_ZoneEncombre : MonoBehaviour
     void ValiderZone()
     {
         estSecurise = true;
-        Debug.Log("✅ Zone dégagée !");
+        Debug.Log("Zone dégagée !");
         
         // Feedback Visuel (ex: lumière verte au dessus de l'extincteur)
         // Light lumiere = GetComponentInChildren<Light>();

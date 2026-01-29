@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 
         if (idJoueur != 0) {
             Debug.Log("🎮 Jeu lancé avec le profil ID : " + idJoueur);
-            // Ici, tu peux dire à ton DatabaseManager local de charger les infos de cet ID
             // databaseManager.userIdConnecte = idJoueur;
         }
     }

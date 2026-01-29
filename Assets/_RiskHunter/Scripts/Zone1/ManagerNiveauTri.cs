@@ -103,7 +103,7 @@ public class ManagerNiveauTri : MonoBehaviour
         
         if (FeedbackManager.Instance != null)
         {
-            FeedbackManager.Instance.Afficher("⚠ " + raison + " (-" + pointsPerdus + ")", Color.red);
+            FeedbackManager.Instance.Afficher(raison + " (-" + pointsPerdus + ")", Color.red);
         }
 
         MettreAJourHUD();

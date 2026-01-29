@@ -8,7 +8,7 @@ public class ChronoNiveau : MonoBehaviour
     public bool chronometreActif = false;
 
     [Header("Interface")]
-    public TextMeshProUGUI texteChrono; // Glisse ton texte UI ici
+    public TextMeshProUGUI texteChrono; 
 
     private float tempsRestant;
     
@@ -37,7 +37,6 @@ public class ChronoNiveau : MonoBehaviour
             {
                 tempsRestant = 0;
                 chronometreActif = false;
-                // Ici tu pourrais lancer un Game Over si tu veux
                 Debug.Log("⏰ Temps écoulé !");
             }
 

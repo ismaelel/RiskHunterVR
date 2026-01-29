@@ -22,7 +22,6 @@ public class GestionMenu : MonoBehaviour
     public Button[] boutonsDelete; 
 
     [Header("---- UI CREATION (Noms Prédéfinis) ----")]
-    // Glisse ici tes boutons "Alpha", "Bravo", etc.
     public GameObject[] boutonsNomsPredefinis; 
 
     [Header("---- UI MENU PRINCIPAL ----")]
@@ -93,7 +92,7 @@ public class GestionMenu : MonoBehaviour
             if(porte != null) porte.MettreAJourAffichage(bdd);
         }
 
-        Debug.Log("✅ Connecté en tant que : " + nom);
+        Debug.Log("Connecté en tant que : " + nom);
 
         // 4. Gestion de l'affichage selon le mode
         if (modeSilencieux)

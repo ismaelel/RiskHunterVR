@@ -7,7 +7,7 @@ public class ScorePorte : MonoBehaviour
     public int idDuNiveau = 1; // Mets 1 pour le Tri, 2 pour l'Incendie...
     
     [Header("UI")]
-    public TextMeshProUGUI texteAffiche; // Glisse le texte ici
+    public TextMeshProUGUI texteAffiche;
     public string texteSiJamaisJoue = "Non joué";
 
     void Start()

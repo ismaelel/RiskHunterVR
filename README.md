@@ -14,21 +14,24 @@
     ```
 2.  Ouvrir le projet avec **Unity Hub**.
 3.  Lancer la scène `MainMenu` situé dans `Assets/Scenes`.
-4.  *Note : La base de données se créera automatiquement au premier lancement. Un fichier sql est présent pour voir les tables dans le dossier SQL*
+4.  *Note : La base de données se créera automatiquement au premier lancement. Un fichier sql est présent pour voir les tables dans le dossier SQL Assets\RiskHuner\SQL*
+5.  *Note : pour jouer sur l'ordinateur, il faut activer dans chaque scène dans la hiérarchie le XR SIMULATOR DEVICE*
+
 
 ### Par le build
 
 Vous pouvez aussi lancer le .exe du dossier Build.
----
 
-## 🕹️ Contrôles
+
+
+## Contrôles
 
 * **Déplacement :** Joystick Gauche (Teleportation).
 * **Interaction :** Gâchette Latérale (Grip) pour attraper.
 * **UI :** Index (Trigger) pour valider.
 
 ---
-## 🎮 Fonctionnalités de Gameplay
+## Fonctionnalités de Gameplay
 
 ### 1. Tri Sélectif & Physique Réaliste
 Le joueur doit trier des déchets (Cartons, Produits inflammables) dans les bennes appropriées.
@@ -47,7 +50,7 @@ Le score n'est pas une simple addition, c'est un calcul d'efficacité :
 
 ---
 
-## 🛠️ Architecture Technique
+## Architecture Technique
 
 ### Stack Technologique
 * **Moteur :** Unity 2022 LTS
@@ -75,7 +78,7 @@ Pour la gestion des données, nous avons opté pour une architecture **locale (S
 
 
 
-## 👨‍💻 Auteur
+## Auteur
 
 **[EL KASBAOUI ISMAËL]**
 Projet Étudiant / Formation VR
